@@ -6,12 +6,15 @@ const post = require("./routers/post");
 const tag = require("./routers/tag");
 const user = require("./routers/user");
 const comment = require("./routers/comment");
+const config = require("./common/jwt_config");
+const auth = require("./common/auth")();
 
 const PORT = process.env.PORT || 3000;
 const dbURI = process.env.MONGODB_URI || "mongodb://localhost/blog-dev";
 
 const app = express();
 
+app.use(helmet());
 app.use((req, res, next) => {
   mongoose
     .connect(dbURI, {
@@ -24,7 +27,7 @@ app.use((req, res, next) => {
     .catch(e => next(e));
 });
 
-app.use(helmet());
+app.use(auth.initialize());
 app.use(express.json());
 
 app.use("/auth", user);
