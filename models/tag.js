@@ -15,7 +15,7 @@ function validateTag(tag) {
     name: Joi.string(),
     posts: Joi.array().items(Joi.string())
   });
-  return schema.validateTag(tag);
+  return schema.validate(tag);
 }
 
 module.exports = { Tag, validateTag };

@@ -19,7 +19,7 @@ function validateComment(comment) {
     contents: Joi.string(),
     date: Joi.date()
   });
-  return schema.validateComment(comment);
+  return schema.validate(comment);
 }
 
 module.exports = { Comment, validateComment };

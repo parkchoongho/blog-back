@@ -23,7 +23,7 @@ function validatePost(post) {
     comments: Joi.array().items(Joi.string()),
     tags: Joi.array().items(Joi.string())
   });
-  return schema.validatePost(post);
+  return schema.validate(post);
 }
 
 module.exports = { Post, validatePost };
